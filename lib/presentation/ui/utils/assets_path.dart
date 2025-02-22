@@ -21,5 +21,19 @@ class AssetsPath{
     '$_banners/one_piece.jpg',
     '$_banners/jjk.jpg',
   ];
+  static const List<String> imageList = [
+    '$_images/your_name.jpg',
+    '$_images/jjk.jpg',
+    '$_images/demon_slayer.jpg',
+    '$_images/naruto_prime.jpg',
+    '$_images/naruto_shippuden.jpg',
+    '$_images/one_piece.jpg',
+    '$_images/your_name.jpg',
+    '$_images/jjk.jpg',
+    '$_images/demon_slayer.jpg',
+    '$_images/naruto_prime.jpg',
+    '$_images/naruto_shippuden.jpg',
+    '$_images/one_piece.jpg',
+  ];
 
 }

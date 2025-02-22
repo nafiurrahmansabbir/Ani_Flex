@@ -3,6 +3,7 @@ import 'package:ani_flex/presentation/ui/screens/categories_screen.dart';
 import 'package:ani_flex/presentation/ui/screens/home_screen.dart';
 import 'package:ani_flex/presentation/ui/screens/my_list_screen.dart';
 import 'package:ani_flex/presentation/ui/screens/my_profile_screen.dart';
+import 'package:ani_flex/presentation/ui/utils/app_colors.dart';
 import 'package:ani_flex/presentation/ui/widgets/home_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -39,10 +40,10 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
               selectedIndex: _navBarController.selectedIndex,
               onDestinationSelected: _navBarController.changeIndex,
               destinations: [
-            NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-            NavigationDestination(icon: Icon(Icons.category_outlined), label: 'Categories'),
-            NavigationDestination(icon: Icon(Icons.list), label: 'My List'),
-            NavigationDestination(icon: Icon(Icons.account_circle_outlined), label: 'Profile'),
+            NavigationDestination(icon: Icon(Icons.home,color: AppColors.themeColor.withOpacity(0.8),), label: 'Home'),
+            NavigationDestination(icon: Icon(Icons.category_outlined,color: AppColors.themeColor.withOpacity(0.8),), label: 'Categories'),
+            NavigationDestination(icon: Icon(Icons.video_collection_sharp,color: AppColors.themeColor.withOpacity(0.8),), label: 'My List'),
+            NavigationDestination(icon: Icon(Icons.account_circle_outlined,color: AppColors.themeColor.withOpacity(0.8),), label: 'Profile'),
           ]),
         );
       }

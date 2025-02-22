@@ -1,4 +1,5 @@
 
+import 'package:ani_flex/presentation/ui/screens/otp_verification_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -28,7 +29,7 @@ class AniFlex extends StatelessWidget {
     return GetMaterialApp(
       initialBinding: ControllerBinder(),
       debugShowCheckedModeBanner: false,
-      // home: const SignInScreen(),
+      // home: const OtpVerificationScreen(),
       home: const SplashScreen(),
       themeMode: ThemeMode.system,
       theme: lightTheme,

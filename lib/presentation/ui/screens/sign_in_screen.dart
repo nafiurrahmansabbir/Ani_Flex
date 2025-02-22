@@ -1,15 +1,16 @@
 import 'package:ani_flex/presentation/ui/screens/email_verification_screen.dart';
+import 'package:ani_flex/presentation/ui/screens/main_bottom_nav_screen/main_bottom_nav_screen.dart';
 import 'package:ani_flex/presentation/ui/widgets/themeSnackBar.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../utils/app_colors.dart';
-import '../utils/assets_path.dart';
+
 import '../widgets/app_logo_svg.dart';
-import '../widgets/login_With_logo.dart';
+
 import '../widgets/login_with_others.dart';
-import 'home_screen.dart';
+
 import 'signup_screen.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -65,7 +66,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          Get.offAll(() => HomeScreen());
+                          Get.offAll(() => MainBottomNavScreen());
                           themeSnackBar('Successful', 'Successfully Logged in');
                         }
                       },

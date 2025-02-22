@@ -1,4 +1,5 @@
 
+import 'package:ani_flex/presentation/ui/screens/main_bottom_nav_screen/main_bottom_nav_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -6,7 +7,7 @@ import '../../controller/countdown_controller.dart';
 import '../utils/app_colors.dart';
 import '../widgets/app_logo_svg.dart';
 import '../widgets/themeSnackBar.dart';
-import 'home_screen.dart';
+
 
 class OtpVerificationScreen extends StatefulWidget {
   const OtpVerificationScreen({super.key});
@@ -20,8 +21,10 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   final TextEditingController _otpTEController = TextEditingController();
   final CountdownController controller = Get.put(CountdownController());
 
+
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode=Theme.of(context).brightness==Brightness.dark;
     return Scaffold(
       body: SingleChildScrollView(
         child: Center(
@@ -53,10 +56,10 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                       borderRadius: BorderRadius.circular(5),
                       fieldHeight: 50,
                       fieldWidth: 40,
-                      activeFillColor: Colors.white,
+                      activeFillColor: isDarkMode? AppColors.darkThemeSurfaceColor:Colors.white,
                       selectedColor: Colors.green,
-                      selectedFillColor: Colors.white,
-                      inactiveFillColor: Colors.white,
+                      selectedFillColor: isDarkMode? AppColors.darkThemeSurfaceColor:Colors.white,
+                      inactiveFillColor: isDarkMode? AppColors.darkThemeSurfaceColor:Colors.white,
                       inactiveColor: AppColors.themeColor,
                     ),
                     enableActiveFill: true,
@@ -68,7 +71,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         //active
-                        Get.offAll(() => HomeScreen());
+                        Get.offAll(() => MainBottomNavScreen());
                       }
                     },
                     child: Text('Next'),
