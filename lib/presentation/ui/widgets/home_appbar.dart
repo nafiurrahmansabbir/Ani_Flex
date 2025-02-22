@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'app_logo_svg.dart';
 import 'appbar_icon_button.dart';
 
-AppBar buildAppBarHome() {
+AppBar HomeAppBar() {
   return AppBar(
     title: AppLogoSvg(logoWidth: 80),
     actions: [
