@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../state_holder/bottom_nav_bar_controller.dart';
 import '../utils/app_colors.dart';
 import 'section_header.dart';
 
@@ -10,11 +12,14 @@ class CategoriesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final BottomNavBarController _navBarController=Get.find<BottomNavBarController>();
     return Column(
       children: [
         SectionHeader(
           title: 'Categories',
-          onTap: () {},
+          onTap: () {
+            _navBarController.backToCategories();
+          },
         ),
         SizedBox(height: 10),
         SizedBox(

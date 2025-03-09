@@ -7,16 +7,15 @@ import 'package:get/get_core/src/get_main.dart';
 
 import '../widgets/app_logo_svg.dart';
 import '../widgets/themeSnackBar.dart';
-import 'home_screen.dart';
 
-class CompleteProfileScreen extends StatefulWidget {
-  const CompleteProfileScreen({super.key});
+class EditProfileScreen extends StatefulWidget {
+  const EditProfileScreen({super.key});
 
   @override
-  State<CompleteProfileScreen> createState() => _CompleteProfileScreenState();
+  State<EditProfileScreen> createState() => _EditProfileScreenState();
 }
 
-class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
+class _EditProfileScreenState extends State<EditProfileScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _firstNameTEController = TextEditingController();
   final TextEditingController _lastNameTEController = TextEditingController();
@@ -40,7 +39,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     ),
                     AppLogoSvg(logoWidth: 120),
                     Text(
-                      'Complete Profile',
+                      'Edit Profile',
                       style: Theme.of(context).textTheme.headlineLarge,
                     ),
                     Text(

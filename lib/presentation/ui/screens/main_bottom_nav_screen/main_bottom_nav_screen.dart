@@ -18,6 +18,13 @@ class MainBottomNavScreen extends StatefulWidget {
 }
 
 class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _navBarController.selectedIndexAtHome();
+
+  }
 
   final BottomNavBarController _navBarController=Get.find<BottomNavBarController>();
 

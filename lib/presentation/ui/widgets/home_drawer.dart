@@ -1,11 +1,10 @@
 import 'package:ani_flex/presentation/ui/utils/assets_path.dart';
-import 'package:ani_flex/presentation/ui/widgets/logout_popup_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../screens/complete_profile_screen.dart';
-import '../screens/email_verification_screen.dart';
-import '../screens/sign_in_screen.dart';
+import '../../state_holder/bottom_nav_bar_controller.dart';
+import '../screens/edit_profile_screen.dart';
+
 import '../utils/app_colors.dart';
 
 class HomeDrawer extends StatefulWidget {
@@ -18,6 +17,7 @@ class HomeDrawer extends StatefulWidget {
 }
 
 class _HomeDrawerState extends State<HomeDrawer> {
+  final BottomNavBarController _navBarController=Get.find<BottomNavBarController>();
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -25,7 +25,10 @@ class _HomeDrawerState extends State<HomeDrawer> {
         children: [
           UserAccountsDrawerHeader(
             currentAccountPicture: GestureDetector(
-              onTap: _completeProfileScreen,
+              onTap: (){
+                Navigator.pop(context);
+                _navBarController.backToProfile();
+              },
               child: CircleAvatar(
                 child: Image.asset(AssetsPath.defaultAvatar),
               ),
@@ -39,6 +42,8 @@ class _HomeDrawerState extends State<HomeDrawer> {
             title: Text("Home"),
             onTap: () {
               Navigator.pop(context);
+              _navBarController.backToHome();
+
             },
           ),
           ListTile(
@@ -49,7 +54,12 @@ class _HomeDrawerState extends State<HomeDrawer> {
           ListTile(
             leading: const Icon(Icons.shop, color: AppColors.themeColor),
             title: const Text('My List'),
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+              _navBarController.backToMyList();
+
+
+            },
           ),
           ListTile(
             leading: const Icon(Icons.settings, color: AppColors.themeColor),
@@ -57,24 +67,15 @@ class _HomeDrawerState extends State<HomeDrawer> {
             onTap: () {},
           ),
           const Spacer(),
-          const Text('version 1.0.0'),
-          const Divider(),
-          ListTile(
-            leading: const Icon(Icons.logout, color: AppColors.themeColor),
-            title: const Text('Logout'),
-            onTap: () {
-              showDialog(
-                context: context,
-                builder: (context) => LogoutPopupDialog(),
-              );
-            },
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text('version 1.0.0',style: TextStyle(color: AppColors.themeColor),),
           ),
+
+
         ],
       ),
     );
   }
 
-  void _completeProfileScreen() {
-    Get.to(() => CompleteProfileScreen());
-  }
 }

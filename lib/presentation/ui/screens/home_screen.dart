@@ -1,13 +1,12 @@
 import 'package:ani_flex/presentation/ui/utils/assets_path.dart';
 import 'package:ani_flex/presentation/ui/widgets/section_header.dart';
 import 'package:flutter/material.dart';
-import 'package:insta_image_viewer/insta_image_viewer.dart';
-
-import '../utils/app_colors.dart';
+import 'package:get/get.dart';
 import '../widgets/categories_section.dart';
 import '../widgets/home_bannner_slider.dart';
 
 import '../widgets/search_text_field.dart';
+import '../widgets/show_picture.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,6 +17,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   TextEditingController _searchTEController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +41,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       crossAxisCount: 3),
                   itemCount: AssetsPath.imageList.length,
                   itemBuilder: (_, index) {
-                    return Card(
-                      child: Image.asset(
-                        AssetsPath.imageList[index],
-                        fit: BoxFit.cover,
+                    return GestureDetector(
+                      onTap: (){
+                        Get.to(()=>ShowPicture(picture: AssetsPath.imageList[index],));
+                      },
+                      child: Card(
+                        child: Image.asset(
+                          AssetsPath.imageList[index],
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     );
                   }),
