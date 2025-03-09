@@ -1,5 +1,4 @@
-
-
+import 'package:ani_flex/presentation/ui/screens/main_bottom_nav_screen/main_bottom_nav_screen.dart';
 import 'package:ani_flex/presentation/ui/utils/assets_path.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -35,11 +34,11 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
               child: Form(
                 key: _formKey,
                 child: Column(
-
                   children: [
-                    const SizedBox(height: 60,),
+                    const SizedBox(
+                      height: 60,
+                    ),
                     AppLogoSvg(logoWidth: 120),
-
                     Text(
                       'Complete Profile',
                       style: Theme.of(context).textTheme.headlineLarge,
@@ -94,7 +93,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     ),
                     const SizedBox(height: 10),
                     TextFormField(
-                      controller:_addressTEController,
+                      controller: _addressTEController,
                       validator: (String? value) {
                         if (value?.trim().isEmpty ?? true) {
                           return 'Enter your Address';
@@ -107,12 +106,15 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     ),
                     const SizedBox(height: 10),
                     const SizedBox(height: 10),
-                    ElevatedButton(onPressed: (){
-                      if(_formKey.currentState!.validate()){
-                        themeSnackBar('Successful','Profile information successfully added');
-                        Get.offAll(()=>HomeScreen());
-                      }
-                    }, child: Text('Complete'))
+                    ElevatedButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            themeSnackBar('Successful',
+                                'Profile information successfully added');
+                            Get.offAll(() => MainBottomNavScreen());
+                          }
+                        },
+                        child: Text('Complete'))
                   ],
                 ),
               ),
