@@ -1,9 +1,9 @@
+import 'package:ani_flex/presentation/ui/screens/tmp/yt_player.dart';
 import 'package:ani_flex/presentation/ui/utils/assets_path.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../state_holder/bottom_nav_bar_controller.dart';
-import '../screens/edit_profile_screen.dart';
 
 import '../utils/app_colors.dart';
 
@@ -64,7 +64,9 @@ class _HomeDrawerState extends State<HomeDrawer> {
           ListTile(
             leading: const Icon(Icons.settings, color: AppColors.themeColor),
             title: const Text('Settings'),
-            onTap: () {},
+            onTap: () {
+              Get.to(()=>YtPlayer(videoUrl: AssetsPath.DemonSlayerTrainer,));
+            },
           ),
           const Spacer(),
           Padding(

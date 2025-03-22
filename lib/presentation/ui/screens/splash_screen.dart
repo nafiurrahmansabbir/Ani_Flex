@@ -1,4 +1,5 @@
 import 'package:ani_flex/presentation/ui/screens/main_bottom_nav_screen/main_bottom_nav_screen.dart';
+import 'package:ani_flex/presentation/ui/screens/tmp/youtube_video_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../widgets/app_logo_svg.dart';
@@ -43,5 +44,6 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> _moveToNextScreen() async {
     await Future.delayed(const Duration(seconds: 2));
     Get.off(() => MainBottomNavScreen());
+    // Get.off(() => VideoApp());
   }
 }

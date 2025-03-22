@@ -1,6 +1,8 @@
+import 'package:ani_flex/presentation/ui/screens/tmp/yt_player.dart';
 import 'package:ani_flex/presentation/ui/utils/assets_path.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../utils/app_colors.dart';
 
@@ -23,26 +25,22 @@ class _HomeBannerSliderState extends State<HomeBannerSlider> {
         CarouselSlider(
           options: CarouselOptions(
             height: 180.0,
-            autoPlay: true, // Enables auto-sliding
+            autoPlay: true,
             autoPlayInterval: Duration(seconds: 5),
-            enlargeCenterPage: true, // Zoom effect
+            enlargeCenterPage: true,
             onPageChanged: (index, reason) {
               _selectedIndex.value = index;
             },
           ),
-          items: AssetsPath.bannerImages.map((imagePath) {
-            return Builder(
-              builder: (BuildContext context) {
-                return Container(
-                  width: MediaQuery.of(context).size.width,
-                  margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                  alignment: Alignment.center,
-                  child: Image.asset(
-                    imagePath,
-                    fit: BoxFit.cover, // Adjust to make it look better
-                  ),
-                );
+          items: AssetsPath.bannerData.map((banner) {
+            return GestureDetector(
+              onTap: () {
+                Get.to(() => YtPlayer(videoUrl: banner["video"]!));
               },
+              child: Image.asset(
+                banner["image"]!,
+                fit: BoxFit.cover,
+              ),
             );
           }).toList(),
         ),
@@ -53,7 +51,7 @@ class _HomeBannerSliderState extends State<HomeBannerSlider> {
             return Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
-                AssetsPath.bannerImages.length,
+                AssetsPath.bannerData.length,
                     (i) => Container(
                   height: 12,
                   width: 12,
@@ -67,11 +65,10 @@ class _HomeBannerSliderState extends State<HomeBannerSlider> {
               ),
             );
           },
-        )
+        ),
       ],
     );
   }
-
 
   @override
   void dispose() {

@@ -1,17 +1,19 @@
-
 import 'package:ani_flex/presentation/ui/screens/sign_in_screen.dart';
 import 'package:ani_flex/presentation/ui/widgets/themeSnackBar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../utils/app_colors.dart';
 import '../utils/app_constants.dart';
-import '../utils/assets_path.dart';
+
 import '../widgets/app_logo_svg.dart';
-import '../widgets/login_With_logo.dart';
+import '../widgets/error_snackbar.dart';
+
 import '../widgets/login_with_others.dart';
-import 'home_screen.dart';
+import 'main_bottom_nav_screen/main_bottom_nav_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -21,13 +23,16 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  bool _isPasswordVisible = false;
   final TextEditingController _confirmPasswordTEController =
       TextEditingController();
   final TextEditingController _usernameTEController = TextEditingController();
+  final TextEditingController _emailTEController = TextEditingController();
   final TextEditingController _fullNameTEController = TextEditingController();
   final TextEditingController _passwordTEController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool _signUpInProgress = false;
+  bool _isPasswordVisibleIcon = false;
+  bool _isPasswordVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -87,6 +92,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     height: 10,
                   ),
                   TextFormField(
+                    controller: _emailTEController,
                     decoration: InputDecoration(hintText: 'E-mail'),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (String? value) {
@@ -110,14 +116,19 @@ class _SignupScreenState extends State<SignupScreen> {
                   SizedBox(
                     height: 10,
                   ),
-                  ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          Get.offAll(() => HomeScreen());
-                          themeSnackBar('Successful', 'Thanks for sing up');
-                        }
-                      },
-                      child: Text('Sing Up')),
+                  Visibility(
+                    visible: _signUpInProgress == false,
+                    replacement: const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    child: ElevatedButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            _signUp();
+                          }
+                        },
+                        child: Text('Sing Up')),
+                  ),
                   RichText(
                     text: TextSpan(
                         text: 'Already have  account  ',
@@ -143,8 +154,6 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
-
-
   Widget _passwordTextField() {
     return TextFormField(
       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -155,7 +164,7 @@ class _SignupScreenState extends State<SignupScreen> {
         }
         return null;
       },
-      obscureText: !_isPasswordVisible,
+      obscureText: !_isPasswordVisibleIcon,
       decoration: InputDecoration(
         prefixIcon: Icon(
           Icons.lock,
@@ -165,11 +174,11 @@ class _SignupScreenState extends State<SignupScreen> {
         suffixIcon: IconButton(
           onPressed: () {
             setState(() {
-              _isPasswordVisible = !_isPasswordVisible;
+              _isPasswordVisibleIcon = !_isPasswordVisibleIcon;
             });
           },
           icon: Icon(
-            _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+            _isPasswordVisibleIcon ? Icons.visibility : Icons.visibility_off,
             color: AppColors.themeColor,
           ),
         ),
@@ -187,7 +196,7 @@ class _SignupScreenState extends State<SignupScreen> {
         }
         return null;
       },
-      obscureText: !_isPasswordVisible,
+      obscureText: !_isPasswordVisibleIcon,
       decoration: InputDecoration(
         prefixIcon: Icon(
           Icons.lock,
@@ -197,15 +206,79 @@ class _SignupScreenState extends State<SignupScreen> {
         suffixIcon: IconButton(
           onPressed: () {
             setState(() {
-              _isPasswordVisible = !_isPasswordVisible;
+              _isPasswordVisibleIcon = !_isPasswordVisibleIcon;
             });
           },
           icon: Icon(
-            _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+            _isPasswordVisibleIcon ? Icons.visibility : Icons.visibility_off,
             color: AppColors.themeColor,
           ),
         ),
       ),
     );
+  }
+
+  Future<void> _signUp() async {
+    setState(() {
+      _signUpInProgress = true;
+    });
+
+    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+    var userName = _usernameTEController.text.trim();
+    var fullName = _fullNameTEController.text.trim();
+    var userEmail = _emailTEController.text.trim();
+    var userPassword = _passwordTEController.text;
+
+    try {
+      // Create the user
+      UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+              email: userEmail, password: userPassword);
+
+      // Fetch the current user (newly created)
+      User? newUser = userCredential.user;
+
+      if (newUser != null) {
+        // Save user data to Firestore
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(newUser.uid)
+            .set({
+          'userName': userName,
+          'userFullName': fullName,
+          'userEmail': userEmail,
+          'userId': newUser.uid,
+          'createAt': DateTime.now(),
+        });
+
+        // Sign out and navigate to SignIn screen
+        await FirebaseAuth.instance.signOut();
+        Get.offAll(() => const MainBottomNavScreen());
+
+        themeSnackBar(
+          "Success",
+          "Account created successfully",
+        );
+      } else {
+        errorSnackBar(
+          "Sign Up Error",
+          "Data Doesn't fetch ",
+        );
+      }
+    } on FirebaseAuthException catch (e) {
+      errorSnackBar(
+        "Sign Up Error",
+        e.message ?? "An error occurred",
+      );
+    } catch (e) {
+      errorSnackBar(
+        "Error",
+        "Something went wrong: $e",
+      );
+    } finally {
+      setState(() {
+        _signUpInProgress = false;
+      });
+    }
   }
 }

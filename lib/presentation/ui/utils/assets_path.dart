@@ -14,13 +14,31 @@ class AssetsPath{
   static const String defaultAvatar='$_avatars/anya_avatar.jpg';
 
 
-  static const List<String> bannerImages = [
-    '$_banners/naruto.jpg',
-    '$_banners/demon_slayer.jpg',
-    '$_banners/spy-x-family.jpg',
-    '$_banners/one_piece.jpg',
-    '$_banners/jjk.jpg',
+
+  static const List<Map<String, String>> bannerData = [
+    {
+      "image": '$_banners/naruto.jpg',
+      "video": 'https://youtu.be/tA3yE4_t6SY?si=2-yPNggBVF5V863f',
+    },
+    {
+      "image": '$_banners/demon_slayer.jpg',
+      "video": 'https://youtu.be/rDDxPpzXFhM?si=uSqTTaBqICpKNzaU',
+    },
+    {
+      "image": '$_banners/spy-x-family.jpg',
+      "video": 'https://youtu.be/CCXLUQzuigw?si=6RwVPJNQc7Thi2CT',
+    },
+    {
+      "image": '$_banners/one_piece.jpg',
+      "video": 'https://youtu.be/S8_YwFLCh4U?si=eAzmCGyqnxuBaCdX',
+    },
+    {
+      "image": '$_banners/jjk.jpg',
+      "video": 'https://youtu.be/Pm-wNmS9RGI?si=BnjhoDnH0pJ22eQk',
+    },
   ];
+  static const String DemonSlayerTrainer='https://youtu.be/rDDxPpzXFhM?si=uSqTTaBqICpKNzaU';
+
   static const List<String> imageList = [
     '$_images/your_name.jpg',
     '$_images/jjk.jpg',
