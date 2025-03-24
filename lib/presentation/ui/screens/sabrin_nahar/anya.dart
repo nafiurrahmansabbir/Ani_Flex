@@ -1,12 +1,3 @@
-import 'package:ani_flex/presentation/ui/screens/edit_profile_screen.dart';
-import 'package:ani_flex/presentation/ui/screens/tmp/yt_player.dart';
-import 'package:ani_flex/presentation/ui/utils/app_colors.dart';
-import 'package:ani_flex/presentation/ui/utils/assets_path.dart';
-import 'package:flutter/material.dart';
-import 'package:fluttericon/font_awesome_icons.dart';
-import 'package:get/get.dart';
-
-import '../widgets/logout_popup_dialog.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
