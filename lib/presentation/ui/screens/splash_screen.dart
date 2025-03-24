@@ -1,4 +1,6 @@
 import 'package:ani_flex/presentation/ui/screens/main_bottom_nav_screen/main_bottom_nav_screen.dart';
+import 'package:ani_flex/presentation/ui/screens/sign_in_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../widgets/app_logo_svg.dart';
@@ -11,6 +13,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
   @override
   void initState() {
     super.initState();
@@ -40,9 +43,14 @@ class _SplashScreenState extends State<SplashScreen> {
     ));
   }
 
+
   Future<void> _moveToNextScreen() async {
+    User? user;
+    user=FirebaseAuth.instance.currentUser;
+    debugPrint(user?.uid);
     await Future.delayed(const Duration(seconds: 2));
-    Get.off(() => MainBottomNavScreen());
+    // Get.off(() => MainBottomNavScreen());
+    Get.off(() => user!=null ? const MainBottomNavScreen(): const SignInScreen(),);
     // Get.off(() => VideoApp());
   }
 }

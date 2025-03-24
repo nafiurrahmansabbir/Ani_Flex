@@ -47,6 +47,9 @@ final ThemeData darkTheme = ThemeData(
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(foregroundColor: AppColors.themeColor),
     ),
+  progressIndicatorTheme: ProgressIndicatorThemeData(
+    color: AppColors.themeColor, // Set your custom color here
+  ),
 
 
 )

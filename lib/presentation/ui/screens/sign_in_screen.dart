@@ -1,6 +1,7 @@
 import 'package:ani_flex/presentation/ui/screens/email_verification_screen.dart';
 import 'package:ani_flex/presentation/ui/screens/main_bottom_nav_screen/main_bottom_nav_screen.dart';
 import 'package:ani_flex/presentation/ui/widgets/themeSnackBar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,7 @@ import '../utils/app_colors.dart';
 
 import '../widgets/app_logo_svg.dart';
 
+import '../widgets/error_snackbar.dart';
 import '../widgets/login_with_others.dart';
 
 import 'signup_screen.dart';
@@ -22,6 +24,7 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   bool _isPasswordVisible = false;
+  bool _signInInProgress = false;
   final TextEditingController _userTEController = TextEditingController();
   final TextEditingController _passwordTEController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -63,14 +66,23 @@ class _SignInScreenState extends State<SignInScreen> {
                   const SizedBox(
                     height: 10,
                   ),
-                  ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          Get.offAll(() => MainBottomNavScreen());
-                          themeSnackBar('Successful', 'Successfully Logged in');
-                        }
-                      },
-                      child: Text('Login')),
+              Visibility(
+                visible: _signInInProgress == false,
+                replacement: const Center(
+                  child: CircularProgressIndicator( color: AppColors.themeColor,),
+                ),
+                child:ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        _checkSignIn(_userTEController.text.trim(),
+                            _passwordTEController.text);
+                        // Get.offAll(() => MainBottomNavScreen());
+                        // themeSnackBar('Successful', 'Successfully Logged in');
+                      }
+                    },
+                    child: Text('Login')),
+              ),
+
                   SizedBox(
                     height: 10,
                   ),
@@ -153,4 +165,35 @@ class _SignInScreenState extends State<SignInScreen> {
           hintText: 'E-mail / Username'),
     );
   }
+
+  Future<void> _checkSignIn(String userEmail, String userPassword) async {
+    setState(() {
+      _signInInProgress = true;
+    });
+    try {
+      final User? firebaseUser = (await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+          email: userEmail, password: userPassword))
+          .user;
+      if (firebaseUser != null) {
+        themeSnackBar("Welcome", "Log in Successfully");
+
+        Get.offAll(() => const MainBottomNavScreen());
+      } else {}
+    } on FirebaseAuthException catch (e) {
+      errorSnackBar(
+        "Wrong Email or Password!",
+        e.message ?? "An error occurred",
+      );
+
+    } catch (e) {
+      errorSnackBar("Error", "Something went wrong: $e");
+    } finally {
+      setState(() {
+        _signInInProgress = false;
+      });
+    }
+  }
+
+
 }
