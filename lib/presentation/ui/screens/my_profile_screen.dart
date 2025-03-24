@@ -1,4 +1,5 @@
 import 'package:ani_flex/presentation/ui/screens/edit_profile_screen.dart';
+import 'package:ani_flex/presentation/ui/screens/tmp/yt_player.dart';
 import 'package:ani_flex/presentation/ui/utils/app_colors.dart';
 import 'package:ani_flex/presentation/ui/utils/assets_path.dart';
 import 'package:flutter/material.dart';
@@ -28,9 +29,14 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CircleAvatar(
-                  radius: 50,
-                  backgroundImage: AssetImage(AssetsPath.defaultAvatar),
+                GestureDetector(
+                  onTap: (){
+                    Get.to(()=>YtPlayer(videoUrl: 'https://youtu.be/A5OLaBlQP9I?si=SMORoGzyw2oEk5Iw', detailsVideo: '"Waku waku" (わくわく) is a Japanese onomatopoeia that expresses excitement, thrill, or nervousness, and it can be used in various contexts, including TV shows, video games, and everyday conversations', name: "Waku Waku Song "));
+                  },
+                  child: CircleAvatar(
+                    radius: 50,
+                    backgroundImage: AssetImage(AssetsPath.defaultAvatar),
+                  ),
                 ),
                 const SizedBox(width: 20),
                 Expanded(
@@ -85,7 +91,9 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                         ],
                       ),
                       IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.to(()=>YtPlayer(videoUrl: 'https://youtu.be/A5OLaBlQP9I?si=SMORoGzyw2oEk5Iw', detailsVideo: '"Waku waku" (わくわく) is a Japanese onomatopoeia that expresses excitement, thrill, or nervousness, and it can be used in various contexts, including TV shows, video games, and everyday conversations', name: "Waku Waku Song "));
+                          },
                           icon: Icon(
                             Icons.arrow_forward_ios,
                             color: AppColors.themeColor,

@@ -65,13 +65,13 @@ class _HomeDrawerState extends State<HomeDrawer> {
             leading: const Icon(Icons.settings, color: AppColors.themeColor),
             title: const Text('Settings'),
             onTap: () {
-              Get.to(()=>YtPlayer(videoUrl: AssetsPath.DemonSlayerTrainer,));
+
             },
           ),
           const Spacer(),
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Text('version 1.0.0',style: TextStyle(color: AppColors.themeColor),),
+            child: Text('version 2.3.1',style: TextStyle(color: AppColors.themeColor),),
           ),
 
 

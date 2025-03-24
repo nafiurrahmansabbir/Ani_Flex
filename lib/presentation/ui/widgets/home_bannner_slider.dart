@@ -35,7 +35,7 @@ class _HomeBannerSliderState extends State<HomeBannerSlider> {
           items: AssetsPath.bannerData.map((banner) {
             return GestureDetector(
               onTap: () {
-                Get.to(() => YtPlayer(videoUrl: banner["video"]!));
+                Get.to(() => YtPlayer(name: banner["name"]!,videoUrl: banner["video"]!, detailsVideo: banner["about"]!,));
               },
               child: Image.asset(
                 banner["image"]!,
