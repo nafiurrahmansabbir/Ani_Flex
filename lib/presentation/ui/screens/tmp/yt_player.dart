@@ -31,7 +31,7 @@ class _YtPlayerState extends State<YtPlayer> {
     if (videoId != null) {
       _controller = YoutubePlayerController(
         initialVideoId: videoId,
-        flags: const YoutubePlayerFlags(autoPlay: true),
+        flags: const YoutubePlayerFlags(autoPlay: false),
       );
     } else {
       throw Exception("Invalid YouTube URL");
