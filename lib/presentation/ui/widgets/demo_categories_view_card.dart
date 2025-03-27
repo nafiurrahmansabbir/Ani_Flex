@@ -110,10 +110,12 @@ class DemoCategoriesViewCard extends StatelessWidget {
     );
   }
 
-  void callDemoVideo(){
-    String videoUrl="https://youtu.be/A5OLaBlQP9I?si=SMORoGzyw2oEk5Iw";
-    String videoDetails='"Waku waku" (わくわく) is a Japanese onomatopoeia that expresses excitement, thrill, or nervousness, and it can be used in various contexts, including TV shows, video games, and everyday conversations';
-    String videName='Waku Waku Song';
-    Get.to(()=>YtPlayer(videoUrl: videoUrl, detailsVideo: videoDetails, name: videName));
+  void callDemoVideo() {
+    String videoUrl = "https://youtu.be/fPopd3ZOGUY?si=qsuKsPDVjaAXkKz_";
+    String videoDetails =
+        "Sakamoto Days | Final Trailer | Netflix\n\n Sakamoto Days is a Japanese manga series written and illustrated by Yuto Suzuki. It has been serialized in Shueisha's shōnen manga magazine Weekly Shōnen Jump since November 2020, with its chapters collected in 21 tankōbon volumes as of March 2025";
+    String videName = 'Sakamoto Days';
+    Get.to(() => YtPlayer(
+        videoUrl: videoUrl, detailsVideo: videoDetails, name: videName));
   }
 }
