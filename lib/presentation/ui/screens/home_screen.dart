@@ -2,11 +2,14 @@ import 'package:ani_flex/presentation/ui/utils/assets_path.dart';
 import 'package:ani_flex/presentation/ui/widgets/section_header.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../utils/app_colors.dart';
 import '../widgets/categories_section.dart';
 import '../widgets/home_bannner_slider.dart';
 
+import '../widgets/play_floating_action_button.dart';
 import '../widgets/search_text_field.dart';
 import '../widgets/show_picture.dart';
+import '../widgets/themeSnackBar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -55,10 +58,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   }),
 
 
+
+
             ],
           ),
         ),
       ),
+
     );
   }
 }
+

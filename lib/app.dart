@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'controller_binder.dart';
+import 'presentation/ui/screens/my_list_screen.dart';
 import 'presentation/ui/screens/splash_screen.dart';
 import 'presentation/ui/theme/dark_theme.dart';
 import 'presentation/ui/theme/light_theme.dart';
@@ -29,7 +30,7 @@ class AniFlex extends StatelessWidget {
     return GetMaterialApp(
       initialBinding: ControllerBinder(),
       debugShowCheckedModeBanner: false,
-      // home: const OtpVerificationScreen(),
+      // home: const  MyListScreen(),
       home: const SplashScreen(),
       themeMode: ThemeMode.system,
       theme: lightTheme,
