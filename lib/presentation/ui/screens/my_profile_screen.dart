@@ -4,7 +4,6 @@ import 'package:ani_flex/presentation/ui/utils/assets_path.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:get/get.dart';
-
 import '../../state_holder/bottom_nav_bar_controller.dart';
 import '../widgets/logout_popup_dialog.dart';
 import 'video_player/yt_player.dart';
@@ -17,12 +16,11 @@ class MyProfileScreen extends StatefulWidget {
 }
 
 class _MyProfileScreenState extends State<MyProfileScreen> {
-
   final BottomNavBarController _navBarController =
-  Get.find<BottomNavBarController>();
+      Get.find<BottomNavBarController>();
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16.0),
