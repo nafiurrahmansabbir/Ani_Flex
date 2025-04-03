@@ -17,7 +17,8 @@ class HomeDrawer extends StatefulWidget {
 }
 
 class _HomeDrawerState extends State<HomeDrawer> {
-  final BottomNavBarController _navBarController=Get.find<BottomNavBarController>();
+  final BottomNavBarController _navBarController =
+      Get.find<BottomNavBarController>();
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -25,7 +26,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
         children: [
           UserAccountsDrawerHeader(
             currentAccountPicture: GestureDetector(
-              onTap: (){
+              onTap: () {
                 Navigator.pop(context);
                 _navBarController.backToProfile();
               },
@@ -43,7 +44,6 @@ class _HomeDrawerState extends State<HomeDrawer> {
             onTap: () {
               Navigator.pop(context);
               _navBarController.backToHome();
-
             },
           ),
           ListTile(
@@ -57,27 +57,23 @@ class _HomeDrawerState extends State<HomeDrawer> {
             onTap: () {
               Navigator.pop(context);
               _navBarController.backToMyList();
-
-
             },
           ),
           ListTile(
             leading: const Icon(Icons.settings, color: AppColors.themeColor),
             title: const Text('Settings'),
-            onTap: () {
-
-            },
+            onTap: () {},
           ),
           const Spacer(),
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Text('version 2.3.1',style: TextStyle(color: AppColors.themeColor),),
+            child: Text(
+              'version 2.3.1',
+              style: TextStyle(color: AppColors.themeColor),
+            ),
           ),
-
-
         ],
       ),
     );
   }
-
 }
