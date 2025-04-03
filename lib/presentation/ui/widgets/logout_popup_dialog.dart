@@ -1,4 +1,5 @@
 import 'package:ani_flex/presentation/ui/screens/sign_in_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,6 +27,7 @@ class _LogoutPopupDialogState extends State<LogoutPopupDialog> {
         TextButton(
           onPressed: () {
             Navigator.of(context).pop();
+            FirebaseAuth.instance.signOut();
             Get.offAll(()=>SignInScreen());
           },
           child: const Text("Yes"),

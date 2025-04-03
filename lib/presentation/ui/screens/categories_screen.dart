@@ -1,10 +1,8 @@
 import 'package:ani_flex/presentation/ui/utils/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
 import '../utils/assets_path.dart';
+import '../widgets/demo_categories_view_card.dart';
 import '../widgets/search_text_field.dart';
-import '../widgets/show_picture.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({super.key});
@@ -56,85 +54,18 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   }
 
   Widget _actionGridview() {
-    return GridView.builder(
-        gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-        itemCount: AssetsPath.imageList.length,
-        itemBuilder: (_, index) {
-          return GestureDetector(
-            onTap: (){
-              Get.to(()=>ShowPicture(picture: AssetsPath.imageList[index],));
-            },
-            child: Card(
-              child: Image.asset(
-                AssetsPath.imageList[index],
-                fit: BoxFit.cover,
-              ),
-            ),
-          );
-        });
+    return DemoCategoriesViewCard(animeList: AssetsPath.myListAnime);
   }
 
   Widget _romanceGridview() {
-    return GridView.builder(
-        shrinkWrap: true,
-        gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
-        itemCount: AssetsPath.imageList.length,
-        itemBuilder: (_, index) {
-          return GestureDetector(
-            onTap: (){
-              Get.to(()=>ShowPicture(picture: AssetsPath.imageList[index],));
-            },
-            child: Card(
-              child: Image.asset(
-                AssetsPath.imageList[index],
-                fit: BoxFit.cover,
-              ),
-            ),
-          );
-        });
+    return DemoCategoriesViewCard(animeList: AssetsPath.myListAnime);
   }
 
   Widget _comedyGridview() {
-    return GridView.builder(
-        shrinkWrap: true,
-        gridDelegate:
-        SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
-        itemCount: AssetsPath.imageList.length,
-        itemBuilder: (_, index) {
-          return GestureDetector(
-            onTap: (){
-              Get.to(()=>ShowPicture(picture: AssetsPath.imageList[index],));
-            },
-            child: Card(
-              child: Image.asset(
-                AssetsPath.imageList[index],
-                fit: BoxFit.cover,
-              ),
-            ),
-          );
-        });
+    return DemoCategoriesViewCard(animeList: AssetsPath.myListAnime);
   }
 
   Widget _horrorGridview() {
-    return GridView.builder(
-        shrinkWrap: true,
-        gridDelegate:
-        SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-        itemCount: AssetsPath.imageList.length,
-        itemBuilder: (_, index) {
-          return GestureDetector(
-            onTap: (){
-              Get.to(()=>ShowPicture(picture: AssetsPath.imageList[index],));
-            },
-            child: Card(
-              child: Image.asset(
-                AssetsPath.imageList[index],
-                fit: BoxFit.cover,
-              ),
-            ),
-          );
-        });
+    return DemoCategoriesViewCard(animeList: AssetsPath.myListAnime);
   }
 }

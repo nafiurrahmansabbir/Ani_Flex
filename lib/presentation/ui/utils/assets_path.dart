@@ -14,14 +14,8 @@ class AssetsPath{
   static const String defaultAvatar='$_avatars/anya_avatar.jpg';
 
 
-  static const List<Map<String, String>> wakuWakuSong=[
-    {
-      "name":"Naruto",
-      "image": '$_banners/naruto.jpg',
-      "video": 'https://youtu.be/tA3yE4_t6SY?si=2-yPNggBVF5V863f',
-      "about": "",
-    }
-  ];
+
+
   static const List<Map<String, String>> bannerData = [
     {
       "name":"Naruto",
@@ -54,6 +48,9 @@ class AssetsPath{
       "about": "Jujutsu Kaisen is a Japanese manga series written and illustrated by Gege Akutami. It was serialized in Shueisha's shōnen manga magazine Weekly Shōnen Jump from March 2018 to September 2024, with its chapters collected in 30 tankōbon volumes",
     },
   ];
+
+
+
   static const String DemonSlayerTrainer='https://youtu.be/rDDxPpzXFhM?si=uSqTTaBqICpKNzaU';
 
   static const List<String> imageList = [
@@ -69,6 +66,45 @@ class AssetsPath{
     '$_images/naruto_prime.jpg',
     '$_images/naruto_shippuden.jpg',
     '$_images/one_piece.jpg',
+  ];
+
+
+  static const List<Map<String, String>> myListAnime = [
+    {
+      "time": "00:22",
+      "title": "Sakamoto Days",
+      "episodes": "13",
+      "image": '$_images/sakamoto_days.jpg',
+    },{
+      "time": "00:26",
+      "title": "Demon Slayer",
+      "episodes": "37",
+      "image": '$_images/demon_slayer.jpg',
+    },
+    {
+      "time": "00:20",
+      "title": "One Piece",
+      "episodes": "12",
+      "image": '$_images/one_piece.jpg'
+    },
+    {
+      "time": "01:40",
+      "title": "Your Name",
+      "episodes": "1",
+      "image": '$_images/your_name.jpg',
+    },
+    {
+      "time": "00:22",
+      "title": "Naruto",
+      "episodes": "33",
+      "image": '$_images/naruto_shippuden.jpg'
+    },{
+      "time": "00:22",
+      "title": "Jujutsu Khaisen",
+      "episodes": "18",
+      "image": '$_images/jjk.jpg',
+    },
+
   ];
 
 }

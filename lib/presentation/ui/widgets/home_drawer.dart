@@ -1,4 +1,3 @@
-import 'package:ani_flex/presentation/ui/screens/tmp/yt_player.dart';
 import 'package:ani_flex/presentation/ui/utils/assets_path.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,6 +18,10 @@ class HomeDrawer extends StatefulWidget {
 class _HomeDrawerState extends State<HomeDrawer> {
   final BottomNavBarController _navBarController =
       Get.find<BottomNavBarController>();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 19abdbc969ec39e174f8d3a42149acc5eb7b35f3
   @override
   Widget build(BuildContext context) {
     return Drawer(

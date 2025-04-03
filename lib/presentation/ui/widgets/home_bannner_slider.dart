@@ -1,9 +1,9 @@
-import 'package:ani_flex/presentation/ui/screens/tmp/yt_player.dart';
 import 'package:ani_flex/presentation/ui/utils/assets_path.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../screens/video_player/yt_player.dart';
 import '../utils/app_colors.dart';
 
 class HomeBannerSlider extends StatefulWidget {
@@ -15,8 +15,6 @@ class HomeBannerSlider extends StatefulWidget {
 
 class _HomeBannerSliderState extends State<HomeBannerSlider> {
   final ValueNotifier<int> _selectedIndex = ValueNotifier(0);
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +33,11 @@ class _HomeBannerSliderState extends State<HomeBannerSlider> {
           items: AssetsPath.bannerData.map((banner) {
             return GestureDetector(
               onTap: () {
-                Get.to(() => YtPlayer(name: banner["name"]!,videoUrl: banner["video"]!, detailsVideo: banner["about"]!,));
+                Get.to(() => YtPlayer(
+                      name: banner["name"]!,
+                      videoUrl: banner["video"]!,
+                      detailsVideo: banner["about"]!,
+                    ));
               },
               child: Image.asset(
                 banner["image"]!,
@@ -52,7 +54,7 @@ class _HomeBannerSliderState extends State<HomeBannerSlider> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
                 AssetsPath.bannerData.length,
-                    (i) => Container(
+                (i) => Container(
                   height: 12,
                   width: 12,
                   margin: const EdgeInsets.only(right: 4),
