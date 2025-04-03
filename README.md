@@ -1,6 +1,6 @@
 # ani_flex
 
-A new Flutter project.
+
 
 ## Getting Started
 
