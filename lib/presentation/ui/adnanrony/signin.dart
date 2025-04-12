@@ -1,156 +1,72 @@
-// import 'package:ani_flex/presentation/ui/screens/email_verification_screen.dart';
-// import 'package:ani_flex/presentation/ui/screens/main_bottom_nav_screen/main_bottom_nav_screen.dart';
-// import 'package:ani_flex/presentation/ui/widgets/themeSnackBar.dart';
-// import 'package:flutter/gestures.dart';
-// import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'main_bottom_nav_screen.dart';
+import 'signup_screen.dart';
+import 'email_verification_screen.dart';
 
-// import '../utils/app_colors.dart';
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({super.key});
+  @override
+  State<SignInScreen> createState() => _SignInScreenState();
+}
 
-// import '../widgets/app_logo_svg.dart';
+class _SignInScreenState extends State<SignInScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final _userController = TextEditingController();
+  final _passController = TextEditingController();
+  bool _showPass = false;
 
-// import '../widgets/login_with_others.dart';
-
-// import 'signup_screen.dart';
-
-// class SignInScreen extends StatefulWidget {
-//   const SignInScreen({super.key});
-
-//   @override
-//   State<SignInScreen> createState() => _SignInScreenState();
-// }
-
-// class _SignInScreenState extends State<SignInScreen> {
-//   bool _isPasswordVisible = false;
-//   final TextEditingController _userTEController = TextEditingController();
-//   final TextEditingController _passwordTEController = TextEditingController();
-//   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: SingleChildScrollView(
-//         child: Center(
-//           child: Padding(
-//             padding: const EdgeInsets.symmetric(horizontal: 20),
-//             child: Form(
-//               key: _formKey,
-//               child: Column(
-//                 children: [
-//                   SizedBox(
-//                     height: 50,
-//                   ),
-//                   AppLogoSvg(logoWidth: 150),
-//                   Text(
-//                     'Welcome Back',
-//                     style: Theme.of(context).textTheme.headlineLarge,
-//                   ),
-//                   Text(
-//                     'Login',
-//                     style: Theme.of(context)
-//                         .textTheme
-//                         .titleLarge
-//                         ?.copyWith(fontWeight: FontWeight.w500),
-//                   ),
-//                   const SizedBox(
-//                     height: 15,
-//                   ),
-//                   _userNameTextField(),
-//                   const SizedBox(
-//                     height: 15,
-//                   ),
-//                   _passwordTextField(),
-//                   const SizedBox(
-//                     height: 10,
-//                   ),
-//                   ElevatedButton(
-//                       onPressed: () {
-//                         if (_formKey.currentState!.validate()) {
-//                           Get.offAll(() => MainBottomNavScreen());
-//                           themeSnackBar('Successful', 'Successfully Logged in');
-//                         }
-//                       },
-//                       child: Text('Login')),
-//                   SizedBox(
-//                     height: 10,
-//                   ),
-//                   RichText(
-//                     text: TextSpan(
-//                         text: 'Don\'t have any account  ',
-//                         style: TextStyle(
-//                             color: Theme.of(context).colorScheme.primary),
-//                         children: [
-//                           TextSpan(
-//                               text: 'Sign Up',
-//                               style: TextStyle(color: AppColors.themeColor),
-//                               recognizer: TapGestureRecognizer()
-//                                 ..onTap = () {
-//                                   Get.to(() => SignupScreen());
-//                                 }),
-//                         ]),
-//                   ),
-//                   TextButton(onPressed: (){
-//                     Get.to(()=>EmailVerificationScreen());
-//                   }, child: Text('Forget Password')),
-//                   loginWithOthers(),
-//                 ],
-//               ),
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-
-
-//   Widget _passwordTextField() {
-//     return TextFormField(
-//       autovalidateMode: AutovalidateMode.onUserInteraction,
-//       controller: _passwordTEController,
-//       validator: (String? value) {
-//         if (value?.isEmpty ?? true) {
-//           return 'Enter your password';
-//         }
-//         return null;
-//       },
-//       obscureText: !_isPasswordVisible,
-//       decoration: InputDecoration(
-//         prefixIcon: Icon(
-//           Icons.lock,
-//           color: AppColors.themeColor,
-//         ),
-//         hintText: "Password",
-//         suffixIcon: IconButton(
-//           onPressed: () {
-//             setState(() {
-//               _isPasswordVisible = !_isPasswordVisible;
-//             });
-//           },
-//           icon: Icon(
-//             _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-//             color: AppColors.themeColor,
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-
-//   Widget _userNameTextField() {
-//     return TextFormField(
-//       controller: _userTEController,
-//       autovalidateMode: AutovalidateMode.onUserInteraction,
-//       validator: (String? value) {
-//         if (value?.trim().isEmpty ?? true) {
-//           return 'Enter e-mail or username';
-//         }
-//         return null;
-//       },
-//       decoration: InputDecoration(
-//           prefixIcon: Icon(
-//             Icons.account_circle,
-//             color: AppColors.themeColor,
-//           ),
-//           hintText: 'E-mail / Username'),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("Login", style: Theme.of(context).textTheme.headlineSmall),
+              const SizedBox(height: 20),
+              TextFormField(
+                controller: _userController,
+                decoration: const InputDecoration(hintText: 'Email/Username'),
+                validator: (v) => v!.isEmpty ? 'Enter username' : null,
+              ),
+              const SizedBox(height: 10),
+              TextFormField(
+                controller: _passController,
+                obscureText: !_showPass,
+                decoration: InputDecoration(
+                  hintText: 'Password',
+                  suffixIcon: IconButton(
+                    icon: Icon(_showPass ? Icons.visibility : Icons.visibility_off),
+                    onPressed: () => setState(() => _showPass = !_showPass),
+                  ),
+                ),
+                validator: (v) => v!.isEmpty ? 'Enter password' : null,
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    Get.offAll(() => const MainBottomNavScreen());
+                  }
+                },
+                child: const Text("Login"),
+              ),
+              TextButton(
+                onPressed: () => Get.to(() => const EmailVerificationScreen()),
+                child: const Text('Forgot Password?'),
+              ),
+              TextButton(
+                onPressed: () => Get.to(() => const SignupScreen()),
+                child: const Text("Don't have an account? Sign Up"),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
