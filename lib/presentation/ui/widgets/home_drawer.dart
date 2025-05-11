@@ -18,10 +18,6 @@ class HomeDrawer extends StatefulWidget {
 class _HomeDrawerState extends State<HomeDrawer> {
   final BottomNavBarController _navBarController =
       Get.find<BottomNavBarController>();
-<<<<<<< HEAD
-=======
-
->>>>>>> 19abdbc969ec39e174f8d3a42149acc5eb7b35f3
   @override
   Widget build(BuildContext context) {
     return Drawer(
